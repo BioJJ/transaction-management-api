@@ -11,14 +11,17 @@ import { UsersService } from './users.service'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { User } from './entities/user.entity'
-// import { IsPublic } from 'src/auth/decorators/is-public.decorator'
+import { IsPublic } from 'src/auth/decorators/is-public.decorator'
+import { ApiTags, ApiBody } from '@nestjs/swagger'
 
 @Controller('users')
+@ApiTags('users')
 export class UsersController {
 	constructor(private readonly usersService: UsersService) {}
 
-	// @IsPublic()
+	@IsPublic()
 	@Post()
+	@ApiBody({ type: CreateUserDto })
 	async create(@Body() createUserDto: CreateUserDto): Promise<User> {
 		return await this.usersService.create(createUserDto)
 	}
@@ -34,6 +37,7 @@ export class UsersController {
 	}
 
 	@Patch(':id')
+	@ApiBody({ type: UpdateUserDto })
 	async update(
 		@Param('id') id: string,
 		@Body() updateUserDto: UpdateUserDto
