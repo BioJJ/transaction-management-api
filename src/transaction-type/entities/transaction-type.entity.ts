@@ -1,8 +1,10 @@
+import { Transaction } from 'src/transactions/entities/transaction.entity'
 import {
 	Column,
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
+	OneToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from 'typeorm'
@@ -23,6 +25,9 @@ export class TransactionType {
 
 	@Column()
 	signal: string
+
+	@OneToMany(() => Transaction, (transaction) => transaction.transactionType)
+	transaction: Transaction[]
 
 	@CreateDateColumn({
 		type: 'timestamp',

@@ -36,7 +36,7 @@ export class TransactionTypeService {
 	}
 
 	async findOne(id: number): Promise<TransactionType> {
-		const transactionType = await this.transactionTypeRepository.findOneOrFail({
+		const transactionType = await this.transactionTypeRepository.findOne({
 			select: ['id', 'type', 'description', 'nature', 'signal'],
 			where: { id }
 		})
