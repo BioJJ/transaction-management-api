@@ -33,7 +33,7 @@ export class UsersService {
 	}
 
 	async findOne(id: number): Promise<User> {
-		const User = await this.userRepository.findOneOrFail({
+		const User = await this.userRepository.findOne({
 			select: ['id', 'name', 'email', 'dateBirth', 'phone'],
 			where: { id }
 		})
@@ -45,7 +45,7 @@ export class UsersService {
 	}
 
 	async findEmail(email: string): Promise<User> {
-		const user = await this.userRepository.findOneOrFail({
+		const user = await this.userRepository.findOne({
 			select: ['id', 'name', 'email', 'status', 'password'],
 			where: { email }
 		})

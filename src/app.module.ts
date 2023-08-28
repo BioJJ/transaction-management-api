@@ -8,6 +8,7 @@ import * as Joi from '@hapi/joi'
 import { AuthModule } from './auth/auth.module'
 import { APP_GUARD } from '@nestjs/core'
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard'
+import { TransactionsModule } from './transactions/transactions.module'
 import { TransactionTypeModule } from './transaction-type/transaction-type.module'
 
 @Module({
@@ -25,6 +26,7 @@ import { TransactionTypeModule } from './transaction-type/transaction-type.modul
 		DatabaseModule,
 		UsersModule,
 		AuthModule,
+		TransactionsModule,
 		TransactionTypeModule
 	],
 	controllers: [AppController],
